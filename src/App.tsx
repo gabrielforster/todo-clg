@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { PlusCircle } from 'phosphor-react';
 
 import classes from './app.module.scss';
+import { TaskRow } from './components/TaskRow';
 import { Filter } from './components/Filter';
 import { filterOptions } from './constants/filterOptions';
 
@@ -32,6 +33,13 @@ function App() {
 		}
 	}
 
+	function handleOpenEdit(taskId){
+		console.log(taskId);
+	}
+
+	function handleOpenDelete(taskId){
+		console.log(taskId);
+	}
 
 	return (
 		<div className={classes.container}>
@@ -47,7 +55,6 @@ function App() {
 							}
 						}}
 					/>
-					
 					<div onClick={handleAddTodo} className={classes.plus}>
 						<PlusCircle size={32} color="#FFF" />
 					</div>
@@ -57,13 +64,12 @@ function App() {
 
 			<section className={classes.tasks}>
 				{todos.map((todo) => (
-					<div key={todo.id} className={classes.task}>
-						<div className={classes.taskName}>{todo.name}</div>
-						<div className={classes.taskActions}>
-							<div className={classes.taskAction}>Edit</div>
-							<div className={classes.taskAction}>Delete</div>
-						</div>
-					</div>
+					<TaskRow
+						key={todo.id}
+						task={todo}
+						onEdit={handleOpenEdit}
+						onDelete={handleOpenDelete}
+					/>
 				))}
 			</section>
 		</div>
