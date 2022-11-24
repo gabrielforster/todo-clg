@@ -18,8 +18,12 @@ function App() {
 	const [newTodoName, setNewTodoName] = useState<string>('');
 	const [filter, setFilter] = useState('all');
 
+	const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+	
+	const [selectedTask, setSelectedTask] = useState<Todo>({} as Todo);
+
 	function handleAddTodo(){
-		console.log('sdnasnjkd');
 		if (newTodoName) {
 			setTodos([
 				...todos,
@@ -33,11 +37,21 @@ function App() {
 		}
 	}
 
-	function handleOpenEdit(taskId){
+	function handleToggleCheck(taskId: number){
+		const updatedTodos = todos.map(todo => {
+			if (todo.id === taskId) {
+				return {...todo, isCompleted: !todo.isCompleted};
+			}
+			return todo;
+		});
+		setTodos(updatedTodos);
+	}
+
+	function handleOpenEdit(taskId: number){
 		console.log(taskId);
 	}
 
-	function handleOpenDelete(taskId){
+	function handleOpenDelete(taskId: number){
 		console.log(taskId);
 	}
 
@@ -69,6 +83,7 @@ function App() {
 						task={todo}
 						onEdit={handleOpenEdit}
 						onDelete={handleOpenDelete}
+						toggleCheck={handleToggleCheck}
 					/>
 				))}
 			</section>
