@@ -45,14 +45,14 @@ export const EditModal = (props: EditModalProps) => {
 			<div className="modal-body">
 				<input
 					type="text"
-					value={props.task.name}
+					value={taskName}
 					onChange={(e) => setTaskName(e.target.value)}
 				/>
 
 				<div className="checkbox">
 					<input
 						type="checkbox"
-						checked={props.task.isCompleted}
+						checked={isCompleted}
 						onChange={(e) => setIsCompleted(e.target.checked)}
 					/>
 				</div>
