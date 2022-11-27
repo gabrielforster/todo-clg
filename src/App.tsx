@@ -5,6 +5,7 @@ import classes from './app.module.scss';
 import { TaskRow } from './components/TaskRow';
 import { Filter } from './components/Filter';
 import { filterOptions } from './constants/filterOptions';
+import { EditModal } from './components/EditModal';
 
 interface Todo {
   id: number;
@@ -48,11 +49,23 @@ function App() {
 	}
 
 	function handleOpenEdit(taskId: number){
-		console.log(taskId);
+		const selectedTask = todos.find(todo => todo.id === taskId);
+		setSelectedTask(selectedTask as Todo);
+		setIsEditModalOpen(true);
 	}
 
 	function handleOpenDelete(taskId: number){
 		console.log(taskId);
+	}
+
+	function handleSaveEditTask(taskId: number, taskName: string, isCompleted: boolean){
+		const updatedTodos = todos.map(todo => {
+			if (todo.id === taskId) {
+				return {...todo, name: taskName, isCompleted: isCompleted};
+			}
+			return todo;
+		});
+		setTodos(updatedTodos);
 	}
 
 	return (
@@ -87,6 +100,14 @@ function App() {
 					/>
 				))}
 			</section>
+
+			<EditModal
+				isOpen={isEditModalOpen}
+				task={selectedTask}
+				onClose={() => setIsEditModalOpen(false)}
+				onSave={handleSaveEditTask}
+			/>
+			{/* <DeleteModal /> */}
 		</div>
 	);
 }

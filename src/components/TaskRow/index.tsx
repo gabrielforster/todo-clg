@@ -17,7 +17,7 @@ export const TaskRow = (props: TaskRowProps) => {
 	return (
 		<>
 			<div className={classes.taskContainer}>
-				<div className={classes.taskName}>{props.task.name}</div>
+				<div className={[classes.taskName, props.task.isCompleted ? classes.completed : ''].join(' ')}>{props.task.name}</div>
 				<div className={classes.taskActions}>
 					<div className={classes.taskAction} onClick={() => props.toggleCheck(props.task.id)}>
 						{props.task.isCompleted
