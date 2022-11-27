@@ -19,7 +19,11 @@ export const TaskRow = (props: TaskRowProps) => {
 			<div className={classes.taskContainer}>
 				<div className={[classes.taskName, props.task.isCompleted ? classes.completed : ''].join(' ')}>{props.task.name}</div>
 				<div className={classes.taskActions}>
-					<div className={classes.taskAction} onClick={() => props.toggleCheck(props.task.id)}>
+					<div
+						className={classes.taskAction}
+						onClick={() => props.toggleCheck(props.task.id)}
+						title="Alterar o status da task"
+					>
 						{props.task.isCompleted
 							?  <XCircle size={32} color='#D24646' />
 							: <CheckCircle size={32} color='#287737' />
