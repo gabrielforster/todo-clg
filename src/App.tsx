@@ -39,11 +39,11 @@ function App() {
 
 	function getMessage(){
 		if (filter === 'completed') {
-			return 'Sem tarefas completadas!';
+			return 'Sem tarefas completas!';
 		}
 
 		if (filter === 'uncompleted') {
-			return 'Sem tarefas incompletas';
+			return 'Sem tarefas incompletas!';
 		}
 
 		return 'Adicione tarefas para elas serem listadas aqui!';
