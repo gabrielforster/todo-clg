@@ -37,6 +37,18 @@ function App() {
 		return todos;
 	}
 
+	function getMessage(){
+		if (filter === 'completed') {
+			return 'Sem tarefas completadas!';
+		}
+
+		if (filter === 'uncompleted') {
+			return 'Sem tarefas incompletas';
+		}
+
+		return 'Adicione tarefas para elas serem listadas aqui!';
+	}
+
 	function handleAddTodo(){
 		if (newTodoName) {
 			setTodos([
@@ -122,7 +134,7 @@ function App() {
 							toggleCheck={handleToggleCheck}
 						/>
 					))
-					: <p className={classes.empty}>Sem tarefas</p>
+					: <h2 className={classes.empty}>{getMessage()}</h2>
 				}
 			</section>
 
