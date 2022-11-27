@@ -25,6 +25,18 @@ function App() {
 	
 	const [selectedTask, setSelectedTask] = useState<Todo>({} as Todo);
 
+	function getTodos() {
+		if (filter === 'completed') {
+			return todos.filter((todo) => todo.isCompleted);
+		}
+
+		if (filter === 'uncompleted') {
+			return todos.filter((todo) => !todo.isCompleted);
+		}
+
+		return todos;
+	}
+
 	function handleAddTodo(){
 		if (newTodoName) {
 			setTodos([
@@ -100,15 +112,18 @@ function App() {
 			</section>
 
 			<section className={classes.tasks}>
-				{todos.map((todo) => (
-					<TaskRow
-						key={todo.id}
-						task={todo}
-						onEdit={handleOpenEdit}
-						onDelete={handleOpenDelete}
-						toggleCheck={handleToggleCheck}
-					/>
-				))}
+				{getTodos().length
+					? getTodos().map((todo) => (
+						<TaskRow
+							key={todo.id}
+							task={todo}
+							onEdit={handleOpenEdit}
+							onDelete={handleOpenDelete}
+							toggleCheck={handleToggleCheck}
+						/>
+					))
+					: <p className={classes.empty}>Sem tarefas</p>
+				}
 			</section>
 
 			<EditModal
