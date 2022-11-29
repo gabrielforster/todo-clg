@@ -1,0 +1,37 @@
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: -2rem;
+
+  button {
+    width: 9rem;
+    height: 2.5rem;
+    border: 0;
+    border-radius: 0.25rem;
+    padding: 0 1rem;
+    font-size: 1rem;
+    color: var(--text);
+    background-color: var(--bg);
+    outline: none;
+    cursor: pointer;
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+
+  button {
+    &.cancel {
+      background-color: var(--secondary);
+      color: var(--bg);
+    }
+
+    &.save {
+      background-color: var(--primary);
+      color: var(--bg);
+    }
+  }
+}

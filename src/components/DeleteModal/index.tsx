@@ -1,6 +1,7 @@
 import Modal from 'react-modal';
 import { XCircle} from 'phosphor-react';
-import { useState } from 'react';
+
+import classes from './styles.module.scss';
 
 Modal.setAppElement('#root');
 
@@ -25,7 +26,7 @@ export const DeleteModal = (props: DeleteModalProps) => {
 				className="react-modal-content"
 				overlayClassName="react-modal-overlay"
 			>
-				<div className="modal-header">
+				<div className={classes.modalHeader}>
 					<h2>Deletar Tarefa!</h2>
 
 					<button
@@ -36,17 +37,19 @@ export const DeleteModal = (props: DeleteModalProps) => {
 						<XCircle />
 					</button>
 				</div>
-				<div className="modal-body">
+				<div className={classes.modalBody}>
 					<p>Tem certeza que deseja deletar a tarefa <strong>{props.task.name}</strong>?</p>
 				</div>
-				<div className="modal-footer">
+				<div className={classes.modalFooter}>
 					<button
+						className={classes.cancel}
 						type="button"
 						onClick={props.onClose}
 					>
             Não, cancelar
 					</button>
 					<button
+						className={classes.save}
 						type="button"
 						onClick={() => props.onDelete(props.task.id)}
 					>
