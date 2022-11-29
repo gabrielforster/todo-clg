@@ -92,6 +92,7 @@ function App() {
 			}
 			return todo;
 		});
+		setSelectedTask({} as Todo);
 		setTodos(updatedTodos);
 		setIsEditModalOpen(false);
 	}

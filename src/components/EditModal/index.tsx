@@ -19,13 +19,13 @@ interface EditModalProps{
 
 export const EditModal = (props: EditModalProps) => {
 
-	const [taskName, setTaskName] = useState<string>();
-	const [isCompleted, setIsCompleted] = useState<boolean>();
+	const [taskName, setTaskName] = useState<string>('');
+	const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
 	useEffect(() => {
 		setTaskName(props.task.name);
 		setIsCompleted(props.task.isCompleted);
-	}, []);
+	}, [props.task]);
 
 	function handleSave(){
 		props.onSave(props.task.id, taskName as string, isCompleted as boolean);
